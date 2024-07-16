@@ -1,0 +1,184 @@
+[gd_scene load_steps=17 format=3 uid="uid://cr0qo6ufpd88r"]
+
+[ext_resource type="Texture2D" uid="uid://dq5ghg44jofcp" path="res://assets/dog.png" id="1_8akn3"]
+
+[sub_resource type="GDScript" id="GDScript_2yb7x"]
+resource_name = "player"
+script/source = "extends CharacterBody2D
+
+@export var speed: float = 50.0
+@onready var animation = $AnimatedSprite2D
+
+
+func _physics_process(delta):
+	
+	var direction = Vector2.ZERO
+
+	if Input.is_action_pressed(\"ui_up\"):
+		direction.y -= 1
+		animation.play(\"up\")
+	elif Input.is_action_pressed(\"ui_down\"):
+		direction.y += 1
+		animation.play(\"down\")
+	elif Input.is_action_pressed(\"ui_left\"):
+		direction.x -= 1
+		animation.play(\"left\")
+	elif Input.is_action_pressed(\"ui_right\"):
+		direction.x += 1
+		animation.play(\"rigth\")
+
+	if direction != Vector2.ZERO:
+		direction = direction.normalized()
+		velocity = direction * speed
+	else:
+		velocity = Vector2.ZERO
+
+	move_and_slide()
+
+	if Input.is_action_just_pressed(\"ui_accept\"): # Default is Space
+		action_space()
+	
+	if Input.is_action_just_pressed(\"ui_select\"): # Default is Z
+		action_z()
+
+func action_space() -> void:
+	print(\"Acción del botón ESPACIO ejecutada\")
+
+func action_z() -> void:
+	print(\"Acción del botón Z ejecutada\")
+
+
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_emot8"]
+size = Vector2(6, 6.75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0j54o"]
+atlas = ExtResource("1_8akn3")
+region = Rect2(0, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x56cd"]
+atlas = ExtResource("1_8akn3")
+region = Rect2(48, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jfl6"]
+atlas = ExtResource("1_8akn3")
+region = Rect2(96, 192, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nswkg"]
+atlas = ExtResource("1_8akn3")
+region = Rect2(96, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2iemu"]
+atlas = ExtResource("1_8akn3")
+region = Rect2(48, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujtud"]
+atlas = ExtResource("1_8akn3")
+region = Rect2(0, 240, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqchu"]
+atlas = ExtResource("1_8akn3")
+region = Rect2(0, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ije1m"]
+atlas = ExtResource("1_8akn3")
+region = Rect2(48, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xu8ri"]
+atlas = ExtResource("1_8akn3")
+region = Rect2(96, 288, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmo23"]
+atlas = ExtResource("1_8akn3")
+region = Rect2(0, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjqvi"]
+atlas = ExtResource("1_8akn3")
+region = Rect2(48, 336, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7kmt"]
+atlas = ExtResource("1_8akn3")
+region = Rect2(96, 336, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4qkwk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0j54o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x56cd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jfl6")
+}],
+"loop": false,
+"name": &"down",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nswkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2iemu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujtud")
+}],
+"loop": false,
+"name": &"left",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqchu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ije1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xu8ri")
+}],
+"loop": false,
+"name": &"rigth",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmo23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjqvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7kmt")
+}],
+"loop": false,
+"name": &"up",
+"speed": 10.0
+}]
+
+[node name="dog" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+script = SubResource("GDScript_2yb7x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_emot8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_4qkwk")
+animation = &"up"
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(6, 6)
+limit_left = -250
+limit_top = -10
+limit_right = 500
+limit_bottom = 400
