@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://cr0qo6ufpd88r"]
+[gd_scene load_steps=18 format=3 uid="uid://cr0qo6ufpd88r"]
 
 [ext_resource type="Texture2D" uid="uid://dq5ghg44jofcp" path="res://assets/dog.png" id="1_8akn3"]
+[ext_resource type="PackedScene" uid="uid://de0mtlseyrf30" path="res://scenes/guf.tscn" id="2_3tqlb"]
 
 [sub_resource type="GDScript" id="GDScript_2yb7x"]
 resource_name = "player"
@@ -8,6 +9,7 @@ script/source = "extends CharacterBody2D
 
 @export var speed: float = 50.0
 @onready var animation = $AnimatedSprite2D
+@onready var guf = $guf
 
 
 func _physics_process(delta):
@@ -35,19 +37,27 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-	if Input.is_action_just_pressed(\"ui_accept\"): # Default is Space
-		action_space()
+	if Input.is_action_just_pressed(\"GUF\"): # Default is Space
+		guf_action()
 	
-	if Input.is_action_just_pressed(\"ui_select\"): # Default is Z
+	if Input.is_action_just_pressed(\"TERRITORY\"): # Default is Z
 		action_z()
 
-func action_space() -> void:
+func guf_action() -> void:
 	print(\"Acción del botón ESPACIO ejecutada\")
+	guf.visible = true
+	$guf/timer_guf.start()
 
+	
 func action_z() -> void:
 	print(\"Acción del botón Z ejecutada\")
 
 
+
+
+
+func _on_timer_guf_timeout():
+	guf.visible = false
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_emot8"]
@@ -182,3 +192,17 @@ limit_left = -250
 limit_top = -10
 limit_right = 500
 limit_bottom = 400
+
+[node name="guf" parent="CharacterBody2D" instance=ExtResource("2_3tqlb")]
+visible = false
+offset_left = -10.6667
+offset_top = -21.3333
+offset_right = -10.6667
+offset_bottom = -21.3333
+scale = Vector2(0.0997005, 0.100019)
+
+[node name="timer_guf" type="Timer" parent="CharacterBody2D/guf"]
+wait_time = 0.3
+one_shot = true
+
+[connection signal="timeout" from="CharacterBody2D/guf/timer_guf" to="CharacterBody2D" method="_on_timer_guf_timeout"]

@@ -1,0 +1,60 @@
+[gd_scene load_steps=12 format=3 uid="uid://bfffmack4txhv"]
+
+[ext_resource type="Script" path="res://scenes/CharacterBody2D.gd" id="1_3b0ah"]
+[ext_resource type="Texture2D" uid="uid://u8n2kdgcos48" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_idle_0.png" id="1_c83pj"]
+[ext_resource type="Texture2D" uid="uid://bifnhhv4qi0v6" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_idle_1.png" id="2_8swqo"]
+[ext_resource type="Texture2D" uid="uid://qs07fwyguogf" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_idle_2.png" id="3_5r4nj"]
+[ext_resource type="Texture2D" uid="uid://crh180snxfk31" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_idle_3.png" id="4_kjii2"]
+[ext_resource type="Texture2D" uid="uid://6s7dmowet8fb" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_idle_4.png" id="5_wsyv5"]
+[ext_resource type="Texture2D" uid="uid://rly3tm37d5mg" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_idle_5.png" id="6_w07bn"]
+[ext_resource type="Texture2D" uid="uid://bgcrubrvh2hvf" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_idle_6.png" id="7_qxyg6"]
+[ext_resource type="Texture2D" uid="uid://boko5c4hl4fah" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_idle_7.png" id="8_tu46e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55cfj"]
+size = Vector2(12, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uqbld"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_c83pj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_8swqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5r4nj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kjii2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wsyv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_w07bn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qxyg6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tu46e")
+}],
+"loop": true,
+"name": &"mary",
+"speed": 5.0
+}]
+
+[node name="npc" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_3b0ah")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_55cfj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_uqbld")
+animation = &"mary"
+frame_progress = 0.357167

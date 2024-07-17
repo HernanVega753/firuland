@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://de0mtlseyrf30"]
+
+[ext_resource type="Texture2D" uid="uid://bkkn58gq37ugn" path="res://assets/dialog_guf.png" id="1_58xx6"]
+
+[node name="guf" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 519.5
+offset_top = -54.0
+offset_right = 519.5
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="dialogo" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.00694444
+anchor_top = -0.382716
+anchor_right = 0.00694444
+anchor_bottom = -0.382716
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(-360, -112)
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="dialogo"]
+layout_mode = 0
+offset_left = 8.0
+offset_right = 3127.0
+offset_bottom = 2687.0
+scale = Vector2(0.0714441, 0.0721224)
+texture = ExtResource("1_58xx6")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="dialogo"]
+texture_filter = 3
+layout_mode = 1
+anchors_preset = -1
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 110.0
+offset_bottom = 102.0
+scale = Vector2(3.22776, 2.66175)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "GUF!"
+metadata/_edit_use_anchors_ = true
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
