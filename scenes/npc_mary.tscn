@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfffmack4txhv"]
+[gd_scene load_steps=29 format=3 uid="uid://bfffmack4txhv"]
 
 [ext_resource type="Script" path="res://scenes/CharacterBody2D.gd" id="1_3b0ah"]
 [ext_resource type="Texture2D" uid="uid://u8n2kdgcos48" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_idle_0.png" id="1_c83pj"]
@@ -9,9 +9,25 @@
 [ext_resource type="Texture2D" uid="uid://rly3tm37d5mg" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_idle_5.png" id="6_w07bn"]
 [ext_resource type="Texture2D" uid="uid://bgcrubrvh2hvf" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_idle_6.png" id="7_qxyg6"]
 [ext_resource type="Texture2D" uid="uid://boko5c4hl4fah" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_idle_7.png" id="8_tu46e"]
+[ext_resource type="Texture2D" uid="uid://d2prekltt8q2d" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_run_0.png" id="10_4lorr"]
+[ext_resource type="Texture2D" uid="uid://td2li34syx7j" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_run_1.png" id="11_wa6a1"]
+[ext_resource type="Texture2D" uid="uid://b2ml74swrvgrs" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_run_2.png" id="12_3nfuk"]
+[ext_resource type="Texture2D" uid="uid://b6jqg3yo0lhou" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_run_3.png" id="13_d6woo"]
+[ext_resource type="Texture2D" uid="uid://mfchoghg60ik" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_run_4.png" id="14_kblbr"]
+[ext_resource type="Texture2D" uid="uid://cbe3idhhkty31" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_run_5.png" id="15_j1nop"]
+[ext_resource type="Texture2D" uid="uid://papytnp52b7" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_run_6.png" id="16_83bi0"]
+[ext_resource type="Texture2D" uid="uid://b18lw5qyvjaq8" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_run_7.png" id="17_gpu2n"]
+[ext_resource type="Texture2D" uid="uid://cjnwoq81ah2tl" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_walk_0.png" id="18_1l5gj"]
+[ext_resource type="Texture2D" uid="uid://k0nvi5hx5uy4" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_walk_1.png" id="19_rack5"]
+[ext_resource type="Texture2D" uid="uid://vr28mgurcsja" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_walk_2.png" id="20_h5f2q"]
+[ext_resource type="Texture2D" uid="uid://ddih24adjckdc" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_walk_3.png" id="21_81esm"]
+[ext_resource type="Texture2D" uid="uid://cb22u8pnxo874" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_walk_4.png" id="22_uacic"]
+[ext_resource type="Texture2D" uid="uid://cebitos2khywx" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_walk_5.png" id="23_uf72j"]
+[ext_resource type="Texture2D" uid="uid://dtaff14raj172" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_walk_6.png" id="24_q25xf"]
+[ext_resource type="Texture2D" uid="uid://cgt1ymnoroflq" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_walk_7.png" id="25_g4qnl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_55cfj"]
-size = Vector2(12, 25)
+size = Vector2(6, 4)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uqbld"]
 animations = [{
@@ -41,20 +57,137 @@ animations = [{
 "texture": ExtResource("8_tu46e")
 }],
 "loop": true,
-"name": &"mary",
-"speed": 5.0
+"name": &"mary_idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_4lorr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_wa6a1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_3nfuk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_d6woo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_kblbr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_j1nop")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_83bi0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_gpu2n")
+}],
+"loop": true,
+"name": &"mary_run",
+"speed": 23.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_1l5gj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_rack5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_h5f2q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_81esm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_uacic")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_uf72j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_q25xf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_g4qnl")
+}],
+"loop": true,
+"name": &"mary_walk",
+"speed": 8.0
 }]
 
-[node name="npc" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxcqh"]
+size = Vector2(31, 41)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="npc_mary" type="Node2D"]
+
+[node name="mary" type="CharacterBody2D" parent="."]
 script = ExtResource("1_3b0ah")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, 2.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mary"]
+position = Vector2(1, 7)
 shape = SubResource("RectangleShape2D_55cfj")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="mary"]
+texture_filter = 1
+scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_uqbld")
-animation = &"mary"
-frame_progress = 0.357167
+animation = &"mary_idle"
+frame_progress = 0.854311
+
+[node name="left" type="RayCast2D" parent="mary"]
+position = Vector2(-6, 0)
+scale = Vector2(1, 15)
+exclude_parent = false
+target_position = Vector2(-30, 0)
+collision_mask = 8
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="down" type="RayCast2D" parent="mary"]
+position = Vector2(1, 10)
+scale = Vector2(15, 1)
+exclude_parent = false
+target_position = Vector2(0, 30)
+collision_mask = 8
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="rigth" type="RayCast2D" parent="mary"]
+position = Vector2(8, 0)
+scale = Vector2(1, 15)
+target_position = Vector2(30, 0)
+collision_mask = 8
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="up" type="RayCast2D" parent="mary"]
+position = Vector2(1, -10)
+scale = Vector2(15, 1)
+target_position = Vector2(0, -30)
+collision_mask = 8
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="hit_box" type="Area2D" parent="mary"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="area_guf" type="CollisionShape2D" parent="mary/hit_box"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_wxcqh")
+
+[node name="reposo" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="action" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="area_entered" from="mary/hit_box" to="mary" method="_on_hit_box_area_entered"]
+[connection signal="timeout" from="reposo" to="mary" method="_on_reposo_timeout"]
+[connection signal="timeout" from="action" to="mary" method="_on_action_timeout"]

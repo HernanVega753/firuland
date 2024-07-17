@@ -9,7 +9,16 @@
 [node name="world" parent="." instance=ExtResource("1_ywclq")]
 
 [node name="dog" parent="world" instance=ExtResource("2_f4ca4")]
+position = Vector2(-8, -7)
 
-[node name="npc" parent="." instance=ExtResource("3_upqf0")]
-position = Vector2(-26, 28)
-scale = Vector2(0.6, 0.6)
+[node name="npc_mary" parent="." instance=ExtResource("3_upqf0")]
+position = Vector2(-38, 37)
+
+[node name="npc_mary2" parent="." instance=ExtResource("3_upqf0")]
+position = Vector2(-50, 127)
+
+[node name="npc_mary3" parent="." instance=ExtResource("3_upqf0")]
+position = Vector2(-182, 62)
+
+[node name="npc_mary4" parent="." instance=ExtResource("3_upqf0")]
+position = Vector2(63, 77)

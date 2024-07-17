@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://cr0qo6ufpd88r"]
+[gd_scene load_steps=20 format=3 uid="uid://cr0qo6ufpd88r"]
 
 [ext_resource type="Texture2D" uid="uid://dq5ghg44jofcp" path="res://assets/dog.png" id="1_8akn3"]
 [ext_resource type="PackedScene" uid="uid://de0mtlseyrf30" path="res://scenes/guf.tscn" id="2_3tqlb"]
+[ext_resource type="Script" path="res://scenes/Area2D.gd" id="3_unrgt"]
 
 [sub_resource type="GDScript" id="GDScript_2yb7x"]
 resource_name = "player"
@@ -46,6 +47,7 @@ func _physics_process(delta):
 func guf_action() -> void:
 	print(\"Acción del botón ESPACIO ejecutada\")
 	guf.visible = true
+	$guf_area/area_guf.disabled = false
 	$guf/timer_guf.start()
 
 	
@@ -58,10 +60,13 @@ func action_z() -> void:
 
 func _on_timer_guf_timeout():
 	guf.visible = false
+	$guf_area/area_guf.disabled = true
+
+
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_emot8"]
-size = Vector2(6, 6.75)
+size = Vector2(3, 1.82292)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0j54o"]
 atlas = ExtResource("1_8akn3")
@@ -170,14 +175,18 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bbbua"]
+
 [node name="dog" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 texture_filter = 1
 scale = Vector2(1.5, 1.5)
+collision_layer = 2
 script = SubResource("GDScript_2yb7x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 0.911458)
 shape = SubResource("RectangleShape2D_emot8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
@@ -204,5 +213,16 @@ scale = Vector2(0.0997005, 0.100019)
 [node name="timer_guf" type="Timer" parent="CharacterBody2D/guf"]
 wait_time = 0.3
 one_shot = true
+
+[node name="guf_area" type="Area2D" parent="CharacterBody2D"]
+scale = Vector2(0.666667, 0.666667)
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("3_unrgt")
+
+[node name="area_guf" type="CollisionShape2D" parent="CharacterBody2D/guf_area"]
+scale = Vector2(1.9839, 1.90957)
+shape = SubResource("CircleShape2D_bbbua")
+disabled = true
 
 [connection signal="timeout" from="CharacterBody2D/guf/timer_guf" to="CharacterBody2D" method="_on_timer_guf_timeout"]

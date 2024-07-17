@@ -48,6 +48,12 @@ TERRITORY={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="dog"
+2d_physics/layer_2="enemy"
+2d_physics/layer_3="world"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
