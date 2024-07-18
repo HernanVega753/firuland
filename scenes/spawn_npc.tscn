@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://djdf7j6lkkpih"]
+
+[ext_resource type="Script" path="res://npc_spawn.gd" id="1_r2r5p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5v34l"]
+size = Vector2(16, 15)
+
+[node name="spawn_npc_left" type="Node2D"]
+
+[node name="npc_spawn" type="Area2D" parent="."]
+script = ExtResource("1_r2r5p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="npc_spawn"]
+position = Vector2(-2, -2.5)
+shape = SubResource("RectangleShape2D_5v34l")
+
+[node name="cooldown" type="Timer" parent="npc_spawn"]
+wait_time = 6.0
+
+[connection signal="timeout" from="npc_spawn/cooldown" to="npc_spawn" method="_on_cooldown_timeout"]

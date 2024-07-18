@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bfffmack4txhv"]
+[gd_scene load_steps=37 format=3 uid="uid://bfffmack4txhv"]
 
 [ext_resource type="Script" path="res://scenes/CharacterBody2D.gd" id="1_3b0ah"]
 [ext_resource type="Texture2D" uid="uid://u8n2kdgcos48" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_idle_0.png" id="1_c83pj"]
@@ -34,7 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://cgt1ymnoroflq" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_walk_7.png" id="25_g4qnl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_55cfj"]
-size = Vector2(6, 4)
+size = Vector2(6, 1)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uqbld"]
 animations = [{
@@ -152,8 +152,11 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxcqh"]
-size = Vector2(31, 41)
+[sub_resource type="CircleShape2D" id="CircleShape2D_jje61"]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kqer"]
+size = Vector2(10, 14)
 
 [node name="npc_mary" type="Node2D"]
 
@@ -161,8 +164,9 @@ size = Vector2(31, 41)
 script = ExtResource("1_3b0ah")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mary"]
-position = Vector2(1, 7)
+position = Vector2(0, 8.5)
 shape = SubResource("RectangleShape2D_55cfj")
+disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="mary"]
 texture_filter = 1
@@ -211,7 +215,15 @@ collision_mask = 8
 
 [node name="area_guf" type="CollisionShape2D" parent="mary/hit_box"]
 position = Vector2(0.5, 0.5)
-shape = SubResource("RectangleShape2D_wxcqh")
+shape = SubResource("CircleShape2D_jje61")
+
+[node name="area_npc" type="Area2D" parent="mary"]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mary/area_npc"]
+position = Vector2(13, -3)
+shape = SubResource("RectangleShape2D_5kqer")
 
 [node name="reposo" type="Timer" parent="."]
 wait_time = 6.0
@@ -222,5 +234,6 @@ wait_time = 3.0
 one_shot = true
 
 [connection signal="area_entered" from="mary/hit_box" to="mary" method="_on_hit_box_area_entered"]
+[connection signal="area_entered" from="mary/area_npc" to="mary" method="_on_area_npc_area_entered"]
 [connection signal="timeout" from="reposo" to="mary" method="_on_reposo_timeout"]
 [connection signal="timeout" from="action" to="mary" method="_on_action_timeout"]

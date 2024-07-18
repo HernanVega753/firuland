@@ -22,7 +22,7 @@ func _physics_process(delta):
 	
 	
 	move_and_slide()
-	if run == false && idle == false:
+	if run == false  && idle == false:
 		animation.play("mary_walk")
 
 		
@@ -77,3 +77,4 @@ func _on_area_npc_area_entered(area):
 		idle = true
 		velocity.x = 0
 		animation.play("mary_talk")
+

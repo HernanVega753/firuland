@@ -193,14 +193,15 @@ shape = SubResource("RectangleShape2D_emot8")
 texture_filter = 1
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_4qkwk")
-animation = &"up"
+animation = &"down"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(0, 0.666667)
 zoom = Vector2(6, 6)
-limit_left = -250
+limit_left = -100
 limit_top = -10
-limit_right = 500
-limit_bottom = 400
+limit_right = 350
+limit_bottom = 140
 
 [node name="guf" parent="CharacterBody2D" instance=ExtResource("2_3tqlb")]
 visible = false

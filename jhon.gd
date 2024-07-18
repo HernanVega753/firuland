@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+
 @onready var hit_box = $"hit_box/area_guf"
 @onready var animation = $AnimatedSprite2D
 @onready var collision = $CollisionShape2D
@@ -11,7 +12,7 @@ var player = null
 var run = false
 var idle = false
 var move = Vector2.ZERO
-var speed = 10
+var speed = -10
 
 func _ready():
 	movement()
@@ -22,7 +23,7 @@ func _physics_process(delta):
 	
 	
 	move_and_slide()
-	if run == false && idle == false:
+	if run == false  && idle == false:
 		animation.play("mary_walk")
 
 		
@@ -34,7 +35,9 @@ func movement():
 		animation.flip_h
 
 func _on_hit_box_area_entered(area):
-	
+	run = true
+	set_collision_mask_value(1,false)
+	animation.play("mary_run")
 	if $up.is_colliding():
 		velocity.x = -speed * 10
 		animation.flip_h = true
@@ -43,14 +46,10 @@ func _on_hit_box_area_entered(area):
 		animation.flip_h = true
 	else:
 		if $rigth.is_colliding():
+			velocity.x = speed * 10
+		elif $left.is_colliding():
 			velocity.x = -speed * 10
 			animation.flip_h = true
-		elif $left.is_colliding():
-			velocity.x = speed * 10
-	run = true
-	if run:
-		collision.disabled = true
-	animation.play("mary_run")
 	
 func _on_reposo_timeout():
 	if run == false:
