@@ -11,7 +11,7 @@ var player = null
 var run = false
 var idle = false
 var move = Vector2.ZERO
-var speed = 10
+var speed = 20
 
 func _ready():
 	movement()
@@ -36,17 +36,17 @@ func movement():
 func _on_hit_box_area_entered(area):
 	
 	if $up.is_colliding():
-		velocity.x = -speed * 10
+		velocity.x = -speed * 5
 		animation.flip_h = true
 	elif $down.is_colliding():
-		velocity.x = -speed * 10
+		velocity.x = -speed * 5
 		animation.flip_h = true
 	else:
 		if $rigth.is_colliding():
-			velocity.x = -speed * 10
+			velocity.x = -speed * 5
 			animation.flip_h = true
 		elif $left.is_colliding():
-			velocity.x = speed * 10
+			velocity.x = speed * 5
 	run = true
 	if run:
 		collision.disabled = true
