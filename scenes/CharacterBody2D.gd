@@ -65,7 +65,7 @@ func _on_action_timeout():
 		movement()
 
 func out_of_screen():
-	if (global_position.x <= -250) || (global_position.x >= 500):
+	if (global_position.x <= -50) || (global_position.x >= 300):
 		self.queue_free()
 	elif (global_position.y <= 10) || (global_position.y >= 400):
 		self.queue_free()

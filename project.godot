@@ -53,6 +53,9 @@ TERRITORY={
 2d_physics/layer_1="dog"
 2d_physics/layer_2="enemy"
 2d_physics/layer_3="world"
+2d_physics/layer_4="points_area"
+2d_physics/layer_5="npc_interaction"
+2d_physics/layer_6="guf_area"
 
 [rendering]
 

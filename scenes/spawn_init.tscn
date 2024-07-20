@@ -13,3 +13,8 @@ script = ExtResource("1_l5hfb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="npc_spawn"]
 position = Vector2(-2, -2.5)
 shape = SubResource("RectangleShape2D_ey0md")
+
+[node name="cooldown" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="cooldown" to="npc_spawn" method="_on_cooldown_timeout"]

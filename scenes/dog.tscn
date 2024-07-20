@@ -1,8 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://cr0qo6ufpd88r"]
+[gd_scene load_steps=19 format=3 uid="uid://cr0qo6ufpd88r"]
 
 [ext_resource type="Texture2D" uid="uid://dq5ghg44jofcp" path="res://assets/dog.png" id="1_8akn3"]
 [ext_resource type="PackedScene" uid="uid://de0mtlseyrf30" path="res://scenes/guf.tscn" id="2_3tqlb"]
-[ext_resource type="Script" path="res://scenes/Area2D.gd" id="3_unrgt"]
 
 [sub_resource type="GDScript" id="GDScript_2yb7x"]
 resource_name = "player"
@@ -45,14 +44,15 @@ func _physics_process(delta):
 		action_z()
 
 func guf_action() -> void:
-	print(\"Acción del botón ESPACIO ejecutada\")
+	#print(\"Acción del botón ESPACIO ejecutada\")
 	guf.visible = true
 	$guf_area/area_guf.disabled = false
 	$guf/timer_guf.start()
 
 	
 func action_z() -> void:
-	print(\"Acción del botón Z ejecutada\")
+	pass
+	#print(\"Acción del botón Z ejecutada\")
 
 
 
@@ -183,6 +183,7 @@ animations = [{
 texture_filter = 1
 scale = Vector2(1.5, 1.5)
 collision_layer = 2
+collision_mask = 7
 script = SubResource("GDScript_2yb7x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
@@ -197,11 +198,12 @@ animation = &"down"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(0, 0.666667)
-zoom = Vector2(6, 6)
-limit_left = -100
+zoom = Vector2(8, 8)
+limit_left = -40
 limit_top = -10
-limit_right = 350
+limit_right = 290
 limit_bottom = 140
+drag_horizontal_enabled = true
 
 [node name="guf" parent="CharacterBody2D" instance=ExtResource("2_3tqlb")]
 visible = false
@@ -217,9 +219,8 @@ one_shot = true
 
 [node name="guf_area" type="Area2D" parent="CharacterBody2D"]
 scale = Vector2(0.666667, 0.666667)
-collision_layer = 8
-collision_mask = 2
-script = ExtResource("3_unrgt")
+collision_layer = 32
+collision_mask = 32
 
 [node name="area_guf" type="CollisionShape2D" parent="CharacterBody2D/guf_area"]
 scale = Vector2(1.9839, 1.90957)

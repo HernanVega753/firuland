@@ -15,6 +15,5 @@ position = Vector2(-2, -2.5)
 shape = SubResource("RectangleShape2D_ol1ga")
 
 [node name="cooldown" type="Timer" parent="npc_spawn"]
-wait_time = 3.0
 
 [connection signal="timeout" from="npc_spawn/cooldown" to="npc_spawn" method="_on_cooldown_timeout"]

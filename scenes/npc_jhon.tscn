@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://yp3kp2bj1o41"]
+[gd_scene load_steps=38 format=3 uid="uid://yp3kp2bj1o41"]
 
 [ext_resource type="Script" path="res://jhon.gd" id="1_470vy"]
 [ext_resource type="Texture2D" uid="uid://cbg2inv6pq2vi" path="res://assets/Male/Character 1/Clothes 2/Character1M_2_idle_0.png" id="2_81jff"]
@@ -158,9 +158,14 @@ radius = 5.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3a62i"]
 size = Vector2(10, 13)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_au4d7"]
+radius = 3.0
+height = 20.0
+
 [node name="npc_jhon" type="Node2D"]
 
 [node name="jhon" type="CharacterBody2D" parent="."]
+collision_layer = 2
 script = ExtResource("1_470vy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="jhon"]
@@ -179,7 +184,7 @@ position = Vector2(-6, 0)
 scale = Vector2(1, 15)
 exclude_parent = false
 target_position = Vector2(-30, 0)
-collision_mask = 8
+collision_mask = 32
 hit_from_inside = true
 collide_with_areas = true
 
@@ -188,7 +193,7 @@ position = Vector2(1, 10)
 scale = Vector2(15, 1)
 exclude_parent = false
 target_position = Vector2(0, 30)
-collision_mask = 8
+collision_mask = 32
 hit_from_inside = true
 collide_with_areas = true
 
@@ -196,7 +201,7 @@ collide_with_areas = true
 position = Vector2(8, 0)
 scale = Vector2(1, 15)
 target_position = Vector2(30, 0)
-collision_mask = 8
+collision_mask = 32
 hit_from_inside = true
 collide_with_areas = true
 
@@ -204,13 +209,13 @@ collide_with_areas = true
 position = Vector2(1, -10)
 scale = Vector2(15, 1)
 target_position = Vector2(0, -30)
-collision_mask = 8
+collision_mask = 32
 hit_from_inside = true
 collide_with_areas = true
 
 [node name="hit_box" type="Area2D" parent="jhon"]
 collision_layer = 0
-collision_mask = 8
+collision_mask = 32
 
 [node name="area_guf" type="CollisionShape2D" parent="jhon/hit_box"]
 position = Vector2(0.5, 0.5)
@@ -223,6 +228,14 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="jhon/area_npc"]
 position = Vector2(-11, -3.5)
 shape = SubResource("RectangleShape2D_3a62i")
+
+[node name="area_points" type="Area2D" parent="jhon" groups=["invaders"]]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jhon/area_points"]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_au4d7")
 
 [node name="reposo" type="Timer" parent="."]
 wait_time = 6.0

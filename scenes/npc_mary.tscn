@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bfffmack4txhv"]
+[gd_scene load_steps=38 format=3 uid="uid://bfffmack4txhv"]
 
 [ext_resource type="Script" path="res://scenes/CharacterBody2D.gd" id="1_3b0ah"]
 [ext_resource type="Texture2D" uid="uid://u8n2kdgcos48" path="res://assets/Female/Character 1/Clothes 1/Character1F_1_idle_0.png" id="1_c83pj"]
@@ -158,9 +158,14 @@ radius = 5.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5kqer"]
 size = Vector2(10, 14)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hfdtu"]
+radius = 3.0
+height = 20.0
+
 [node name="npc_mary" type="Node2D"]
 
 [node name="mary" type="CharacterBody2D" parent="."]
+collision_layer = 2
 script = ExtResource("1_3b0ah")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mary"]
@@ -180,7 +185,7 @@ position = Vector2(-6, 0)
 scale = Vector2(1, 15)
 exclude_parent = false
 target_position = Vector2(-30, 0)
-collision_mask = 8
+collision_mask = 32
 hit_from_inside = true
 collide_with_areas = true
 
@@ -189,7 +194,7 @@ position = Vector2(1, 10)
 scale = Vector2(15, 1)
 exclude_parent = false
 target_position = Vector2(0, 30)
-collision_mask = 8
+collision_mask = 32
 hit_from_inside = true
 collide_with_areas = true
 
@@ -197,7 +202,7 @@ collide_with_areas = true
 position = Vector2(8, 0)
 scale = Vector2(1, 15)
 target_position = Vector2(30, 0)
-collision_mask = 8
+collision_mask = 32
 hit_from_inside = true
 collide_with_areas = true
 
@@ -205,13 +210,13 @@ collide_with_areas = true
 position = Vector2(1, -10)
 scale = Vector2(15, 1)
 target_position = Vector2(0, -30)
-collision_mask = 8
+collision_mask = 32
 hit_from_inside = true
 collide_with_areas = true
 
 [node name="hit_box" type="Area2D" parent="mary"]
 collision_layer = 0
-collision_mask = 8
+collision_mask = 32
 
 [node name="area_guf" type="CollisionShape2D" parent="mary/hit_box"]
 position = Vector2(0.5, 0.5)
@@ -224,6 +229,14 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mary/area_npc"]
 position = Vector2(13, -3)
 shape = SubResource("RectangleShape2D_5kqer")
+
+[node name="area_points" type="Area2D" parent="mary" groups=["invaders"]]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mary/area_points"]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_hfdtu")
 
 [node name="reposo" type="Timer" parent="."]
 wait_time = 6.0
