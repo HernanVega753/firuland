@@ -1,11 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://88lx4vh05d8y"]
+[gd_scene load_steps=5 format=3 uid="uid://88lx4vh05d8y"]
 
 [ext_resource type="PackedScene" uid="uid://dbtct3l48p68g" path="res://scenes/world.tscn" id="1_ywclq"]
 [ext_resource type="PackedScene" uid="uid://cr0qo6ufpd88r" path="res://scenes/dog.tscn" id="2_f4ca4"]
+[ext_resource type="PackedScene" uid="uid://8b4xdcark3eb" path="res://scenes/spawn_npc_left.tscn" id="3_tx8sj"]
+[ext_resource type="PackedScene" uid="uid://bc457di82wgi2" path="res://scenes/spawn_npc_rigth.tscn" id="4_3apdj"]
 
 [node name="main" type="Node2D"]
 
 [node name="world" parent="." instance=ExtResource("1_ywclq")]
 
-[node name="dog" parent="." instance=ExtResource("2_f4ca4")]
-position = Vector2(41, 31)
+[node name="dog" parent="world" instance=ExtResource("2_f4ca4")]
+position = Vector2(134, 38)
+
+[node name="spawn_npc_left" parent="." instance=ExtResource("3_tx8sj")]
+position = Vector2(-111, 37)
+
+[node name="spawn_npc_rigth" parent="." instance=ExtResource("4_3apdj")]
+position = Vector2(286, 44)

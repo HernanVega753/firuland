@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj3lfyscvjp7p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e6unt"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_2eeq8"]
+font_size = 43
+
+[node name="GUI" type="Node2D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control/HBoxContainer"]
+layout_mode = 2
+text = "Invasores en territorio: "
+label_settings = SubResource("LabelSettings_e6unt")
+
+[node name="counter" type="Label" parent="Control/HBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_2eeq8")

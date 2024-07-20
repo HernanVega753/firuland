@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://cr0qo6ufpd88r"]
+[gd_scene load_steps=19 format=3 uid="uid://cr0qo6ufpd88r"]
 
 [ext_resource type="Texture2D" uid="uid://dq5ghg44jofcp" path="res://assets/dog.png" id="1_8akn3"]
+[ext_resource type="PackedScene" uid="uid://de0mtlseyrf30" path="res://scenes/guf.tscn" id="2_3tqlb"]
 
 [sub_resource type="GDScript" id="GDScript_2yb7x"]
 resource_name = "player"
@@ -8,6 +9,7 @@ script/source = "extends CharacterBody2D
 
 @export var speed: float = 50.0
 @onready var animation = $AnimatedSprite2D
+@onready var guf = $guf
 
 
 func _physics_process(delta):
@@ -35,23 +37,36 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-	if Input.is_action_just_pressed(\"ui_accept\"): # Default is Space
-		action_space()
+	if Input.is_action_just_pressed(\"GUF\"): # Default is Space
+		guf_action()
 	
-	if Input.is_action_just_pressed(\"ui_select\"): # Default is Z
+	if Input.is_action_just_pressed(\"TERRITORY\"): # Default is Z
 		action_z()
 
-func action_space() -> void:
-	print(\"Acción del botón ESPACIO ejecutada\")
+func guf_action() -> void:
+	#print(\"Acción del botón ESPACIO ejecutada\")
+	guf.visible = true
+	$guf_area/area_guf.disabled = false
+	$guf/timer_guf.start()
 
+	
 func action_z() -> void:
-	print(\"Acción del botón Z ejecutada\")
+	pass
+	#print(\"Acción del botón Z ejecutada\")
+
+
+
+
+
+func _on_timer_guf_timeout():
+	guf.visible = false
+	$guf_area/area_guf.disabled = true
 
 
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_emot8"]
-size = Vector2(6, 6.75)
+size = Vector2(3, 1.82292)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0j54o"]
 atlas = ExtResource("1_8akn3")
@@ -160,25 +175,56 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bbbua"]
+
 [node name="dog" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 texture_filter = 1
 scale = Vector2(1.5, 1.5)
+collision_layer = 2
+collision_mask = 7
 script = SubResource("GDScript_2yb7x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 0.911458)
 shape = SubResource("RectangleShape2D_emot8")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 texture_filter = 1
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_4qkwk")
-animation = &"up"
+animation = &"down"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-zoom = Vector2(6, 6)
-limit_left = -250
+position = Vector2(0, 0.666667)
+zoom = Vector2(8, 8)
+limit_left = -40
 limit_top = -10
-limit_right = 500
-limit_bottom = 400
+limit_right = 290
+limit_bottom = 140
+drag_horizontal_enabled = true
+
+[node name="guf" parent="CharacterBody2D" instance=ExtResource("2_3tqlb")]
+visible = false
+offset_left = -10.6667
+offset_top = -21.3333
+offset_right = -10.6667
+offset_bottom = -21.3333
+scale = Vector2(0.0997005, 0.100019)
+
+[node name="timer_guf" type="Timer" parent="CharacterBody2D/guf"]
+wait_time = 0.3
+one_shot = true
+
+[node name="guf_area" type="Area2D" parent="CharacterBody2D"]
+scale = Vector2(0.666667, 0.666667)
+collision_layer = 32
+collision_mask = 32
+
+[node name="area_guf" type="CollisionShape2D" parent="CharacterBody2D/guf_area"]
+scale = Vector2(1.9839, 1.90957)
+shape = SubResource("CircleShape2D_bbbua")
+disabled = true
+
+[connection signal="timeout" from="CharacterBody2D/guf/timer_guf" to="CharacterBody2D" method="_on_timer_guf_timeout"]
