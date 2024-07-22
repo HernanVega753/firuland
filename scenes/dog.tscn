@@ -10,8 +10,11 @@ script/source = "extends CharacterBody2D
 @export var speed: float = 50.0
 @onready var animation = $AnimatedSprite2D
 @onready var guf = $guf
+@onready var dog = $\".\"
+
 var counter = 0
 var control = 0
+var guf_position = Vector2(0,0)
 
 func _physics_process(delta):
 	
@@ -20,15 +23,30 @@ func _physics_process(delta):
 	if Input.is_action_pressed(\"ui_up\"):
 		direction.y -= 1
 		animation.play(\"up\")
+		guf_position = Vector2(-12, -23)
+		$guf.position = guf_position
+		$guf_area/area_guf.position = Vector2(0, -20)
+			
 	elif Input.is_action_pressed(\"ui_down\"):
 		direction.y += 1
 		animation.play(\"down\")
+		guf_position = Vector2(-12, 5)
+		$guf.position = guf_position
+		$guf_area/area_guf.position = Vector2(0, 20)
+		
 	elif Input.is_action_pressed(\"ui_left\"):
 		direction.x -= 1
 		animation.play(\"left\")
+		guf_position = Vector2(-28, -10)
+		$guf.position = guf_position
+		$guf_area/area_guf.position = Vector2(-20, 0)
+		
 	elif Input.is_action_pressed(\"ui_right\"):
 		direction.x += 1
 		animation.play(\"rigth\")
+		guf_position = Vector2(5, -10)
+		$guf.position = guf_position
+		$guf_area/area_guf.position = Vector2(20, 0)
 
 	if direction != Vector2.ZERO:
 		direction = direction.normalized()
@@ -59,7 +77,8 @@ func action_z() -> void:
 func _on_timer_guf_timeout():
 	guf.visible = false
 	$guf_area/area_guf.disabled = true
-
+	$guf_area/area_guf.position = Vector2(0,0)
+	#$guf.position = $\".\".global_position + Vector2(0, -5)
 
 
 
@@ -67,18 +86,20 @@ func _on_guf_area_area_entered(area):
 	#print(\"area entered\", area)
 	if area.is_in_group(\"hitbox\"):
 		counter += 1
-		#print(counter)
+		print(counter)
 	guf_powered()
 
 func guf_powered():
 	if counter % 2 == 0 && control <= 5:
-		$guf_area/area_guf.global_scale += Vector2(0.1, 0.1)
-		$guf.position += Vector2(-1, -1)
-		$guf.scale += Vector2(0.01, 0.01)
-		control += 1
-		print(control)
+		pass
+		#$guf_area/area_guf.global_scale += Vector2(0.1, 0.1)
+		#$guf.position += Vector2(-1, -1)
+		#$guf.scale += Vector2(0.01, 0.01)
+		#control += 1
+		#print(control)
 	elif control > 5 && counter % 2 == 0:
-		speed += 5
+		pass
+		#speed += 5
 	
 		
 		
@@ -230,20 +251,21 @@ collision_layer = 32
 collision_mask = 96
 
 [node name="area_guf" type="CollisionShape2D" parent="CharacterBody2D/guf_area"]
+position = Vector2(0, 2)
 scale = Vector2(1.9839, 1.90957)
 shape = SubResource("CircleShape2D_bbbua")
 disabled = true
 
 [node name="guf" parent="CharacterBody2D" instance=ExtResource("2_3tqlb")]
 visible = false
-offset_left = -10.0
-offset_top = -23.3333
-offset_right = -10.0
-offset_bottom = -23.3333
+offset_left = -11.0
+offset_top = -20.0
+offset_right = -11.0
+offset_bottom = -20.0
 scale = Vector2(0.0997005, 0.100019)
 
 [node name="timer_guf" type="Timer" parent="CharacterBody2D/guf"]
-wait_time = 0.3
+wait_time = 0.15
 one_shot = true
 
 [connection signal="area_entered" from="CharacterBody2D/guf_area" to="CharacterBody2D" method="_on_guf_area_area_entered"]

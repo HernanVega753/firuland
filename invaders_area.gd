@@ -21,7 +21,7 @@ func _on_area_2d_area_entered(area):
 	if invaders_in_area > 0 && empty_zone:
 		cooldown.start()
 		empty_zone = false
-	invaders_counter.text = str(invaders_in_area)
+	invaders_counter.text  = str(invaders_in_area)
 
 func _on_cooldown_timeout():
 	print("Game Over")
@@ -32,12 +32,8 @@ func _on_area_2d_area_exited(area):
 	invaders_counter.text = str(invaders_in_area)		
 		
 func empty_territory():
-	
-
 	if invaders_in_area == 0:
 		empty_zone = true
 		cooldown.stop()
 	
-
-
 
