@@ -29,3 +29,20 @@ label_settings = SubResource("LabelSettings_e6unt")
 layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_2eeq8")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control"]
+layout_mode = 2
+offset_left = 714.0
+offset_top = 4.0
+offset_right = 1098.0
+offset_bottom = 63.0
+
+[node name="Label2" type="Label" parent="Control/HBoxContainer2"]
+layout_mode = 2
+text = "invasores espantados: "
+label_settings = SubResource("LabelSettings_e6unt")
+
+[node name="global_counter" type="Label" parent="Control/HBoxContainer2"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_2eeq8")

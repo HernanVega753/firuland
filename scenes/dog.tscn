@@ -11,6 +11,7 @@ script/source = "extends CharacterBody2D
 @onready var animation = $AnimatedSprite2D
 @onready var guf = $guf
 @onready var dog = $\".\"
+signal score_updated
 
 var counter = 0
 var control = 0
@@ -86,8 +87,10 @@ func _on_guf_area_area_entered(area):
 	#print(\"area entered\", area)
 	if area.is_in_group(\"hitbox\"):
 		counter += 1
-		print(counter)
+		emit_signal(\"score_updated\", counter)
+		#print(counter)
 	guf_powered()
+	
 
 func guf_powered():
 	if counter % 2 == 0 && control <= 5:

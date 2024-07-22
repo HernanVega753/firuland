@@ -8,6 +8,14 @@ var counter = 0
 var invaders_in_area = 0
 var empty_zone = true
 
+func _ready():
+	pass
+	
+	
+
+func _score_signal(counter):
+	$GUI/HBoxContainer3/points.text = str(counter)
+
 func _process(delta):
 	empty_territory()
 	if cooldown.time_left == 0:
@@ -35,5 +43,7 @@ func empty_territory():
 	if invaders_in_area == 0:
 		empty_zone = true
 		cooldown.stop()
+		
+
 	
 
