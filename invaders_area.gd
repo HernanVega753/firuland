@@ -33,6 +33,7 @@ func _on_area_2d_area_entered(area):
 
 func _on_cooldown_timeout():
 	print("Game Over")
+	get_tree().change_scene_to_file("res://scenes/main_screen.tscn")
 
 func _on_area_2d_area_exited(area):
 	if area.is_in_group("invaders"):
