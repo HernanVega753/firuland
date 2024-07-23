@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://7mq86awt2lys"]
+
+[ext_resource type="Script" path="res://scenes/main_screen.gd" id="1_6venb"]
+[ext_resource type="Texture2D" uid="uid://yenuahjlufjq" path="res://assets/FIRULOGO.png" id="1_8ldof"]
+[ext_resource type="Texture2D" uid="uid://c3wnhb5srfmg2" path="res://assets/far city background/-6.png" id="1_52wv8"]
+[ext_resource type="FontFile" uid="uid://dsqia50vevk2g" path="res://font/Linerama_Font_1_14/OpenType (.otf)/Linerama-Bold.otf" id="1_tmql0"]
+
+[sub_resource type="Theme" id="Theme_14ffe"]
+
+[sub_resource type="FontVariation" id="FontVariation_yh130"]
+base_font = ExtResource("1_tmql0")
+
+[node name="main_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -956.0
+offset_top = 6.0
+offset_right = -956.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("1_6venb")
+
+[node name="-6" type="Sprite2D" parent="."]
+position = Vector2(958.5, 557)
+scale = Vector2(3.20167, 2.79)
+texture = ExtResource("1_52wv8")
+
+[node name="logo" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 503.0
+offset_top = -295.0
+offset_right = 1403.0
+offset_bottom = 905.0
+alignment = 1
+
+[node name="logo_main" type="TextureRect" parent="logo"]
+layout_mode = 2
+texture = ExtResource("1_8ldof")
+expand_mode = 5
+
+[node name="buttons" type="VBoxContainer" parent="logo/logo_main"]
+layout_mode = 2
+offset_left = -502.0
+offset_top = 720.0
+offset_right = 1418.0
+offset_bottom = 970.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_14ffe")
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="play_btn" type="Button" parent="logo/logo_main/buttons"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.46, 0.406333, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.87, 0.87, 0.87, 1)
+theme_override_colors/font_outline_color = Color(0.915408, 0.169082, 5.77569e-07, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("1_tmql0")
+theme_override_font_sizes/font_size = 80
+action_mode = 0
+text = "Jugar"
+
+[node name="quit_btn" type="Button" parent="logo/logo_main/buttons"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.46, 0.406333, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.87, 0.87, 0.87, 1)
+theme_override_colors/font_outline_color = Color(0.733333, 0.172549, 0.0431373, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = SubResource("FontVariation_yh130")
+theme_override_font_sizes/font_size = 80
+action_mode = 0
+text = "Salir"
+
+[connection signal="pressed" from="logo/logo_main/buttons/play_btn" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="logo/logo_main/buttons/quit_btn" to="." method="_on_quit_btn_pressed"]

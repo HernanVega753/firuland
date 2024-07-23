@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bijwppydwtnbj"]
+
+[ext_resource type="Script" path="res://scenes/main_parallax.gd" id="1_heep6"]
+
+[node name="main_parallax" type="ParallaxBackground"]
+script = ExtResource("1_heep6")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(12000, 0)

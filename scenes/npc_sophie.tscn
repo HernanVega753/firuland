@@ -213,8 +213,8 @@ collision_mask = 32
 hit_from_inside = true
 collide_with_areas = true
 
-[node name="hit_box" type="Area2D" parent="sophie"]
-collision_layer = 0
+[node name="hit_box" type="Area2D" parent="sophie" groups=["hitbox"]]
+collision_layer = 64
 collision_mask = 32
 
 [node name="area_guf" type="CollisionShape2D" parent="sophie/hit_box"]

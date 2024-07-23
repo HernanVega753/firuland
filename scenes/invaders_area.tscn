@@ -66,6 +66,27 @@ layout_mode = 2
 text = "0"
 label_settings = SubResource("LabelSettings_wsa3c")
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="GUI"]
+modulate = Color(1, 1, 0.0392157, 1)
+self_modulate = Color(1, 1, 0, 1)
+show_behind_parent = true
+top_level = true
+offset_left = 689.0
+offset_top = 11.0
+offset_right = 1113.0
+offset_bottom = 70.0
+theme_override_constants/separation = 11
+
+[node name="Label" type="Label" parent="GUI/HBoxContainer3"]
+layout_mode = 2
+text = "invasores espantados: "
+label_settings = SubResource("LabelSettings_ggbi1")
+
+[node name="points" type="Label" parent="GUI/HBoxContainer3"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_wsa3c")
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="GUI"]
 anchors_preset = -1
 anchor_left = 0.309

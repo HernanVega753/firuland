@@ -8,6 +8,14 @@ var counter = 0
 var invaders_in_area = 0
 var empty_zone = true
 
+func _ready():
+	pass
+	
+	
+
+func _score_signal(counter):
+	$GUI/HBoxContainer3/points.text = str(counter)
+
 func _process(delta):
 	empty_territory()
 	if cooldown.time_left == 0:
@@ -21,10 +29,11 @@ func _on_area_2d_area_entered(area):
 	if invaders_in_area > 0 && empty_zone:
 		cooldown.start()
 		empty_zone = false
-	invaders_counter.text = str(invaders_in_area)
+	invaders_counter.text  = str(invaders_in_area)
 
 func _on_cooldown_timeout():
 	print("Game Over")
+	get_tree().change_scene_to_file("res://scenes/main_screen.tscn")
 
 func _on_area_2d_area_exited(area):
 	if area.is_in_group("invaders"):
@@ -32,12 +41,10 @@ func _on_area_2d_area_exited(area):
 	invaders_counter.text = str(invaders_in_area)		
 		
 func empty_territory():
-	
-
 	if invaders_in_area == 0:
 		empty_zone = true
 		cooldown.stop()
+		
+
 	
-
-
 
