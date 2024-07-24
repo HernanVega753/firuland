@@ -54,5 +54,5 @@ func empty_territory():
 		$audio_general_level.stream_paused = false
 		
 
-	
-
+func _on_audio_general_level_finished():
+	$audio_general_level.play()
