@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://88lx4vh05d8y"]
+[gd_scene load_steps=7 format=3 uid="uid://88lx4vh05d8y"]
 
 [ext_resource type="Script" path="res://scenes/game_manager.gd" id="1_yl2tb"]
 [ext_resource type="PackedScene" uid="uid://dbtct3l48p68g" path="res://scenes/world.tscn" id="1_ywclq"]
 [ext_resource type="PackedScene" uid="uid://cr0qo6ufpd88r" path="res://scenes/dog.tscn" id="2_f4ca4"]
 [ext_resource type="PackedScene" uid="uid://8b4xdcark3eb" path="res://scenes/spawn_npc_left.tscn" id="3_tx8sj"]
 [ext_resource type="PackedScene" uid="uid://bc457di82wgi2" path="res://scenes/spawn_npc_rigth.tscn" id="4_3apdj"]
+[ext_resource type="PackedScene" uid="uid://iqiuen11bnw7" path="res://pause_screen.tscn" id="6_huvak"]
 
 [node name="main" type="Node2D"]
 
@@ -22,6 +23,8 @@ position = Vector2(-111, 37)
 
 [node name="spawn_npc_rigth" parent="." instance=ExtResource("4_3apdj")]
 position = Vector2(286, 44)
+
+[node name="pause_screen" parent="." instance=ExtResource("6_huvak")]
 
 [connection signal="score_updated" from="dog/CharacterBody2D" to="game_manager" method="_on_character_body_2d_score_updated"]
 
