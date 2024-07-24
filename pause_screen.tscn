@@ -1,0 +1,77 @@
+[gd_scene load_steps=3 format=3 uid="uid://iqiuen11bnw7"]
+
+[ext_resource type="Script" path="res://pause_screen.gd" id="1_t3ttx"]
+[ext_resource type="FontFile" uid="uid://dsqia50vevk2g" path="res://font/Linerama_Font_1_14/OpenType (.otf)/Linerama-Bold.otf" id="2_j4cyc"]
+
+[node name="pause_screen" type="CanvasLayer"]
+process_mode = 3
+visible = false
+script = ExtResource("1_t3ttx")
+
+[node name="darker" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.133333, 0.133333, 0.133333, 0.792157)
+
+[node name="pause_menu" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="pause_container" type="VBoxContainer" parent="pause_menu"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 237.0
+offset_bottom = -286.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="pause_label" type="Label" parent="pause_menu/pause_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_fonts/font = ExtResource("2_j4cyc")
+theme_override_font_sizes/font_size = 120
+text = "PAUSADO"
+
+[node name="btn_reanudar" type="Button" parent="pause_menu/pause_container"]
+process_mode = 3
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_j4cyc")
+theme_override_font_sizes/font_size = 50
+text = "reanudar
+"
+
+[node name="btn_menu" type="Button" parent="pause_menu/pause_container"]
+process_mode = 3
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_j4cyc")
+theme_override_font_sizes/font_size = 50
+text = "menú principal"
+
+[node name="btn_salir" type="Button" parent="pause_menu/pause_container"]
+process_mode = 3
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_j4cyc")
+theme_override_font_sizes/font_size = 50
+text = "salir del juego"
+
+[connection signal="pressed" from="pause_menu/pause_container/btn_reanudar" to="." method="_on_btn_reanudar_pressed"]
+[connection signal="pressed" from="pause_menu/pause_container/btn_menu" to="." method="_on_btn_menu_pressed"]
+[connection signal="pressed" from="pause_menu/pause_container/btn_salir" to="." method="_on_btn_salir_pressed"]
