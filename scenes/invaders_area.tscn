@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://buxgv27hahlxc"]
+[gd_scene load_steps=9 format=3 uid="uid://buxgv27hahlxc"]
 
 [ext_resource type="Script" path="res://invaders_area.gd" id="1_ikmb0"]
+[ext_resource type="AudioStream" uid="uid://c0eex3vrddr24" path="res://music/2- Showdown in Turmoil carnival.ogg" id="2_ayi5p"]
+[ext_resource type="AudioStream" uid="uid://bkh4q3vawyjmd" path="res://music/Track 6 (Traffic Lights).wav" id="3_lcb27"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ua7a4"]
 size = Vector2(257, 311)
@@ -107,6 +109,15 @@ label_settings = SubResource("LabelSettings_jqheh")
 [node name="countdown" type="Label" parent="GUI/HBoxContainer2"]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_dxwbr")
+
+[node name="audio_invaders_in_area" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_ayi5p")
+volume_db = 10.103
+
+[node name="audio_general_level" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_lcb27")
+volume_db = -9.513
+autoplay = true
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

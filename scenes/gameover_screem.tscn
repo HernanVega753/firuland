@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://sqkjwhqqfqob"]
+[gd_scene load_steps=14 format=3 uid="uid://sqkjwhqqfqob"]
 
 [ext_resource type="Script" path="res://scenes/gameover_screem.gd" id="1_pt83c"]
 [ext_resource type="FontFile" uid="uid://dsqia50vevk2g" path="res://font/Linerama_Font_1_14/OpenType (.otf)/Linerama-Bold.otf" id="1_ua85p"]
 [ext_resource type="Texture2D" uid="uid://dq5ghg44jofcp" path="res://assets/dog.png" id="2_3dxs8"]
+[ext_resource type="AudioStream" uid="uid://blae8qson7lyi" path="res://music/Track 7 (Panorama).wav" id="4_bifkw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yq6nv"]
 font = ExtResource("1_ua85p")
@@ -218,6 +219,10 @@ texture_filter = 3
 position = Vector2(960, 872)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_kotrc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_bifkw")
+autoplay = true
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/REINICIAR" to="." method="_on_reiniciar_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/SALIR" to="." method="_on_salir_pressed"]

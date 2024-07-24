@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://cr0qo6ufpd88r"]
+[gd_scene load_steps=20 format=3 uid="uid://cr0qo6ufpd88r"]
 
 [ext_resource type="Texture2D" uid="uid://dq5ghg44jofcp" path="res://assets/dog.png" id="1_8akn3"]
 [ext_resource type="PackedScene" uid="uid://de0mtlseyrf30" path="res://scenes/guf.tscn" id="2_3tqlb"]
+[ext_resource type="AudioStream" uid="uid://sq2tdkkwdsil" path="res://sounds/audio_bark.mp3" id="3_yop2v"]
 
 [sub_resource type="GDScript" id="GDScript_2yb7x"]
 resource_name = "player"
@@ -16,6 +17,7 @@ signal score_updated
 var counter = 0
 var control = 0
 var guf_position = Vector2(0,0)
+var guf_sound = false
 
 func _physics_process(delta):
 	
@@ -68,8 +70,11 @@ func guf_action() -> void:
 	guf.visible = true
 	$guf_area/area_guf.disabled = false
 	$guf/timer_guf.start()
-
-	
+	if guf_sound == false:
+		$\"../guf_sound\".play()
+		$\"../guf_sound/audio_guf_timer\".start()
+		guf_sound = true
+		
 func action_z() -> void:
 	pass
 	#print(\"Acción del botón Z ejecutada\")
@@ -106,6 +111,12 @@ func guf_powered():
 	
 		
 		
+
+
+func _on_audio_guf_timer_timeout():
+	guf_sound = false
+	$\"../guf_sound\".stop()
+	
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_emot8"]
@@ -268,8 +279,17 @@ offset_bottom = -20.0
 scale = Vector2(0.0997005, 0.100019)
 
 [node name="timer_guf" type="Timer" parent="CharacterBody2D/guf"]
-wait_time = 0.15
+wait_time = 0.3
 one_shot = true
+
+[node name="guf_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_yop2v")
+volume_db = 14.857
+pitch_scale = 1.5
+
+[node name="audio_guf_timer" type="Timer" parent="guf_sound"]
+wait_time = 0.4
 
 [connection signal="area_entered" from="CharacterBody2D/guf_area" to="CharacterBody2D" method="_on_guf_area_area_entered"]
 [connection signal="timeout" from="CharacterBody2D/guf/timer_guf" to="CharacterBody2D" method="_on_timer_guf_timeout"]
+[connection signal="timeout" from="guf_sound/audio_guf_timer" to="CharacterBody2D" method="_on_audio_guf_timer_timeout"]

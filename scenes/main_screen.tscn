@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://7mq86awt2lys"]
+[gd_scene load_steps=31 format=3 uid="uid://7mq86awt2lys"]
 
 [ext_resource type="Script" path="res://scenes/main_screen.gd" id="1_6venb"]
 [ext_resource type="FontFile" uid="uid://dsqia50vevk2g" path="res://font/Linerama_Font_1_14/OpenType (.otf)/Linerama-Bold.otf" id="1_tmql0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dq5ghg44jofcp" path="res://assets/dog.png" id="3_fgg2f"]
 [ext_resource type="Texture2D" uid="uid://ciq0akjjpuoc1" path="res://assets/logo_firuland.png" id="4_x4w1a"]
 [ext_resource type="PackedScene" uid="uid://de0mtlseyrf30" path="res://scenes/guf.tscn" id="6_885e1"]
+[ext_resource type="AudioStream" uid="uid://cqu4lxswh7r5r" path="res://music/Track 5 (Slow Ride).wav" id="7_tdkjs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_607nx"]
 texture = ExtResource("2_5js6m")
@@ -724,6 +725,69 @@ animations = [{
 [sub_resource type="FontVariation" id="FontVariation_yh130"]
 base_font = ExtResource("1_tmql0")
 
+[sub_resource type="Animation" id="Animation_1t7oc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2081, 975)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"down"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("guf:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("guf2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_pqwtl"]
 resource_name = "dog_main_screen"
 length = 5.0
@@ -788,88 +852,10 @@ tracks/4/keys = {
 "values": [false, true, false]
 }
 
-[sub_resource type="Animation" id="Animation_1t7oc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2081, 975)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("AnimatedSprite2D:animation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"down"]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("guf:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("guf2:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c6bck"]
 _data = {
 "RESET": SubResource("Animation_1t7oc"),
 "dog_main_screen": SubResource("Animation_pqwtl")
-}
-
-[sub_resource type="Animation" id="Animation_fvnr5"]
-resource_name = "title_animation"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("logo:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(100, 1200), Vector2(900, 1200)]
 }
 
 [sub_resource type="Animation" id="Animation_80m5v"]
@@ -885,6 +871,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(100, 1200)]
+}
+
+[sub_resource type="Animation" id="Animation_fvnr5"]
+resource_name = "title_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("logo:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(100, 1200), Vector2(900, 1200)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fkisw"]
@@ -1000,6 +1001,9 @@ offset_left = 533.0
 offset_top = 1196.0
 offset_right = 533.0
 offset_bottom = 1196.0
+
+[node name="audio_main_screen" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_tdkjs")
 
 [connection signal="pressed" from="logo/logo_main/buttons/play_btn" to="." method="_on_play_btn_pressed"]
 [connection signal="pressed" from="logo/logo_main/buttons/quit_btn" to="." method="_on_quit_btn_pressed"]
