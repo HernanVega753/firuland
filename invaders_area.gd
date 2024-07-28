@@ -38,6 +38,7 @@ func _on_area_2d_area_entered(area):
 
 func _on_cooldown_timeout():
 	print("Game Over")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().change_scene_to_file("res://scenes/gameover_screem.tscn")
 
 func _on_area_2d_area_exited(area):

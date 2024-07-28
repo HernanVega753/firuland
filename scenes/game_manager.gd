@@ -6,6 +6,7 @@ var global_score = 0
 
 func _ready():
 	var player = get_node("CharacterBody2D")
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 
 
 func _on_character_body_2d_score_updated(counter):
